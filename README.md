@@ -17,19 +17,23 @@ This is a TikTok viewer. Currently, it supports viewing your liked videos in ran
 
 ## Installation
 
-1) Download the latest version of [Python](https://www.python.org/downloads/), make sure it is added to the PATH. (This is an option on installation.) 
+####    If you have [Chocolatey](https://chocolatey.org/) installed, run `choco install mpv python` and skip steps 1 and 2.
 
-2) Download the latest [release](https://github.com/nanometer5088/CLI-TikTok/releases).
+1) Download the latest version of [Python](https://www.python.org/downloads/), make sure it is added to the PATH. (This is an option on installation.)
 
-3) Extract **all** files to an empty folder.
+2) Download the latest version of [MPV](https://mpv.io/installation/), make sure it is added to the PATH.
 
-4) Move your `Likes.txt` file to the folder. Refer to [How to get video list](https://github.com/nanometer5088/CLI-TikTok/blob/main/docs/HowToGetVideoList.md) for more details on how to get yours.
+3) Download the latest [release](https://github.com/nanometer5088/CLI-TikTok/releases).
 
-5) Open a terminal within the folder.
+4) Extract **all** files to an empty folder.
 
-6) `pip install -r requirements.txt`
+5) Move your `Likes.txt` file to the folder. Refer to [How to get video list](https://github.com/nanometer5088/CLI-TikTok/blob/main/docs/HowToGetVideoList.md) for more details on how to get yours.
 
-6) `main.py`
+6) Open a terminal within the folder.
+
+7) `pip install -r requirements.txt`
+
+8) `main.py`
 
 ## Contributing
 
