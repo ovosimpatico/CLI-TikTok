@@ -23,7 +23,7 @@ This is a TikTok viewer. Currently, it supports viewing your liked videos in ran
 
 3) Extract **all** files to an empty folder.
 
-4) Move your `Likes.txt` file to the folder. Refer to ###`wip`### for more details on how to get yours.
+4) Move your `Likes.txt` file to the folder. Refer to [How to get video list](https://github.com/nanometer5088/CLI-TikTok/blob/main/docs/HowToGetVideoList.md) for more details on how to get yours.
 
 5) Open a terminal within the folder.
 
@@ -40,7 +40,7 @@ Any contributions you make are **greatly appreciated**.
 - [MPV](https://mpv.io/)
 - [YT-DLP](https://github.com/yt-dlp/yt-dlp)
 
-### Disclaimer
+## Disclaimer
 This project is not associated or endorsed by ByteDance. ByteDance, and all associated properties are trademarks or registered trademarks of ByteDance Ltd.
 
 By using this software, you acknowledge that use of this software is done so at your own risk.
