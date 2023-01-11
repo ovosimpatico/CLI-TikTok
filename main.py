@@ -51,8 +51,9 @@ def detect_dead_link(url):
         return True # Means it's all clear to download.
 
 ydl_opts = {
-    'ignoreerrors': True,
-    'outtmpl': os.getcwd()+'/video/video'
+  "quiet":    True,
+  "simulate": True,
+  "forceurl": True
 }
 
 urls = listas()[0]
@@ -65,9 +66,9 @@ def main():
         #os.system("cls || clear")
         url = url_redirection(urls[randomvideo])
         if detect_dead_link(url) == True:
-            YoutubeDL(ydl_opts).download(url)
+            DDL = YoutubeDL(ydl_opts).extract_info(url)["url"]
+            os.system("cls || clear")
             print(f'\nVideo Liked - {datas[randomvideo]}\n')
-            arch = subprocess.check_output(f'mpv --fs "{os.getcwd()}/video/video"', shell=True)
-            #os.system(f'mpv --fs "{os.getcwd()}/video/video"')
-
+            subprocess.check_output(f'mpv "{DDL}"', shell=False)
+            #os.system(f'mpv "{DDL}"')
 main()
