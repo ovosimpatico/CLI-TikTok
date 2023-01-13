@@ -23,7 +23,7 @@ This is a TikTok viewer. Currently, it supports viewing your liked videos in ran
 
 2) Download the latest version of [MPV](https://mpv.io/installation/), make sure it is added to the PATH.
 
-3) Download the latest [release](https://github.com/nanometer5088/CLI-TikTok/releases).
+3) Download the [source code](https://github.com/nanometer5088/CLI-TikTok/archive/refs/heads/main.zip) (recommended) or the latest [release](https://github.com/nanometer5088/CLI-TikTok/releases).
 
 4) Extract **all** files to an empty folder.
 
