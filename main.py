@@ -1,25 +1,29 @@
-from src.functions import detect_dead_link
-from src.functions import url_redirection
 from src.functions import listas
 
-from src.streaming import getVideoInfo
-from src.streaming import playback
+from src.streaming import playbackrandom, playback
 
-import os
+import configparser
+configParser = configparser.RawConfigParser()
+configFilePath = r'config.cfg'
+configParser.read(configFilePath)
+random = configParser.get('DEFAULT', 'random')
+
+
+random = str(random)
 
 urls = listas()[0]
 datas = listas()[1]
 
-def main():
-    while True:
-        from src.functions import randomvideo
-        
-        os.system("cls || clear")
-        randomvideo = randomvideo(urls)
-        url = url_redirection(urls[randomvideo])
-        
-        if detect_dead_link(url) == True:
-            print(f'\nVideo Liked - {datas[randomvideo]}\n')
-            playback(url)
+try:
+    if random == "True":
+        playbackrandom(urls, datas)
+    elif random == "False":
+        playback(urls, datas)
+    else:
+        print("Something went wrong with your configuration")
+except KeyboardInterrupt:
+    print("KeyboardInterrupt was detected.\nGoodbye!")
 
-main()
+print(random)
+print(type(random))
+

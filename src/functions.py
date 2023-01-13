@@ -58,5 +58,5 @@ def url_redirection(url):
 
 
 def randomvideo(urls):
-    #Chooses a random video from Likes.txt - Planned to be optional.
+    #Chooses a random video from Likes.txt - Optional Feature
     return random.randint(0, (len(urls) - 1))
