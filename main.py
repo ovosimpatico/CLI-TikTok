@@ -6,10 +6,9 @@ import configparser
 configParser = configparser.RawConfigParser()
 configFilePath = r'config.cfg'
 configParser.read(configFilePath)
-random = configParser.get('DEFAULT', 'random')
 
+random = str(configParser.get('DEFAULT', 'random'))
 
-random = str(random)
 
 urls = listas()[0]
 datas = listas()[1]
@@ -23,7 +22,3 @@ try:
         print("Something went wrong with your configuration")
 except KeyboardInterrupt:
     print("KeyboardInterrupt was detected.\nGoodbye!")
-
-print(random)
-print(type(random))
-

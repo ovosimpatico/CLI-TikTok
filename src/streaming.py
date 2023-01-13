@@ -34,9 +34,13 @@ def playback(urls, datas):
     index = 0
     while True:
         os.system("cls || clear")
-        randomvideo = index = index + 1
-        url = url_redirection(urls[randomvideo])
+        try:
+            randomvideo = index = index + 1
+            url = url_redirection(urls[randomvideo])
         
-        if detect_dead_link(url) == True:
-            print(f'\nVideo Liked - {datas[randomvideo]}\n')
-            mpv(url)
+            if detect_dead_link(url) == True:
+                print(f'\nVideo Liked - {datas[randomvideo]}\n')
+                mpv(url)
+        except IndexError:
+            print("All tiktoks were played.")
+            break
