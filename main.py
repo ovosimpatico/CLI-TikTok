@@ -4,8 +4,6 @@ from src.downloader import downloadtiktoks
 from src.byuser import by_user
 import sys, os
 
-urls = listas()[0]
-datas = listas()[1]
 
 try:
     question = int(input("""Welcome to CLI TikTok, an open-source TikTok viewer!
@@ -25,6 +23,8 @@ try:
         """))
         os.system("cls || clear")
         if downloadquestion == 1:
+            urls = listas()[0]
+            datas = listas()[1]
             downloadtiktoks(urls, datas)
             sys.exit()
         if downloadquestion == 2:
@@ -50,9 +50,13 @@ try:
         """))
             os.system("cls || clear")
             if randomquestion == 1:
+                urls = listas()[0]
+                datas = listas()[1]
                 playbackrandom(urls, datas)
                 sys.exit()
             if randomquestion == 2:
+                urls = listas()[0]
+                datas = listas()[1]
                 playback(urls, datas)
                 sys.exit()
         
@@ -64,5 +68,7 @@ try:
     print("The option you chose isn't valid.")
 except ValueError:
     print("The option you chose isn't valid.")
+except FileNotFoundError:
+    print("The 'Likes.txt' file was not found. Make sure it is in the program folder and try again.")
 except KeyboardInterrupt:
     print("\tKeyboardInterrupt was detected - Goodbye!")
