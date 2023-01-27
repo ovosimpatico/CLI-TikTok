@@ -1,3 +1,8 @@
+<p align="center">
+    <a href="https://github.com/nanometer5088/CLI-TikTok/">
+        <img src="docs/assets/logo.png" alt="Logo" width="160" height="160">
+    </a>
+
 <h2 align="center"> TikTok CLI tool</h2>
 
 [![Downloads][downloads-shield]][downloads-url]
