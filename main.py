@@ -2,7 +2,7 @@ from src.functions import listas
 from src.streaming import playbackrandom, playback
 from src.downloader import downloadtiktoks
 from src.byuser import by_user
-import sys, os
+import sys, os, subprocess
 
 
 try:
@@ -70,5 +70,8 @@ except ValueError:
     print("The option you chose isn't valid.")
 except FileNotFoundError:
     print("The 'Likes.txt' file was not found. Make sure it is in the program folder and try again.")
+except subprocess.CalledProcessError:
+    os.system("cls || clear")
+    print("Mpv media player was not found on your system path. Make sure it's installed and try again.")
 except KeyboardInterrupt:
     print("\tKeyboardInterrupt was detected - Goodbye!")
