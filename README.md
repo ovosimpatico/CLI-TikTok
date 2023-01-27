@@ -5,6 +5,7 @@
 
 <h2 align="center"> TikTok CLI tool</h2>
 
+[![Discord][discord-shield]][discord-url]
 [![Downloads][downloads-shield]][downloads-url]
 [![Language][language-shield]][language-url]
 [![License][license-shield]][license-url]
@@ -64,3 +65,7 @@ By using this software, you acknowledge that use of this software is done so at 
 
 [license-shield]: https://img.shields.io/github/license/nanometer5088/CLI-TikTok?style=for-the-badge
 [license-url]: https://github.com/nanometer5088/CLI-TikTok/blob/main/LICENSE
+
+[discord-shield]: https://img.shields.io/discord/1068543728274382868?color=7289da&label=Support&logo=discord&logoColor=7289da&style=for-the-badge
+[discord-url]: https://discord.gg/7qK8sfEq2q
+[discord-banner]: https://discordapp.com/api/guilds/1068543728274382868/widget.png?style=banner2
