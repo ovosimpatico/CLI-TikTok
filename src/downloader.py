@@ -26,7 +26,6 @@ def downloadtiktoks(urls, datas):
         print('Operation canceled.')
         return
     while True:
-        os.system("cls || clear")
         try:
             randomvideo = index = index + 1
             url = url_redirection(urls[randomvideo])

@@ -1,4 +1,4 @@
-<h2 align="center"> TikTok CLI viewer</h2>
+<h2 align="center"> TikTok CLI tool</h2>
 
 [![Downloads][downloads-shield]][downloads-url]
 [![Language][language-shield]][language-url]
@@ -13,7 +13,7 @@
 </ol>
 
 ## About the project
-This is a TikTok viewer. Currently, it supports viewing your liked videos in randomized order. In the future, it will support more features and will be easier to use.
+This is a TikTok archiver and viewer. Currently, it supports watching or archiving your liked tiktoks, or watching tiktoks from a specific creator.
 
 ## Installation
 

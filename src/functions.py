@@ -36,8 +36,6 @@ def listas():
 def removevideo():
     if os.path.exists(os.getcwd()+"/video/video"):
         os.remove(os.getcwd()+"/video/video")
-    else:
-        pass
 
 
 def detect_dead_link(url):

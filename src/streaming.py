@@ -16,8 +16,8 @@ def getVideoInfo(url):
     return YoutubeDL(ydl_opts).extract_info(url)["url"]
 
 def mpv(url):
-    subprocess.check_output(f'mpv "{getVideoInfo(url)}"', shell=False)
-    
+    subprocess.check_output(f'mpv "{getVideoInfo(url)}"', shell=True)
+
 def playbackrandom(urls, datas):
     while True:
         os.system("cls || clear")
