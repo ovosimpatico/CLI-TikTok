@@ -19,7 +19,7 @@
 </ol>
 
 ## About the project
-This is a TikTok archiver and viewer. Currently, it supports watching or archiving your liked tiktoks, or watching tiktoks from a specific creator.
+This is a TikTok archiver and viewer. It supports watching or archiving your liked tiktoks or from a specific creator.
 
 ## Installation
 
@@ -49,6 +49,7 @@ Any contributions you make are **greatly appreciated**.
 
 - [MPV](https://mpv.io/)
 - [YT-DLP](https://github.com/yt-dlp/yt-dlp)
+- [ProxiTok](https://github.com/pablouser1/ProxiTok)
 
 ## Disclaimer
 This project is not associated or endorsed by ByteDance. ByteDance, and all associated properties are trademarks or registered trademarks of ByteDance Ltd.

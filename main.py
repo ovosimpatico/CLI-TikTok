@@ -1,7 +1,7 @@
 from src.functions import listas
 from src.streaming import playbackrandom, playback
 from src.downloader import downloadtiktoks
-from src.byuser import by_user
+from src.byuser import streamuser, getLinks
 import sys, os, subprocess
 
 
@@ -24,13 +24,15 @@ try:
         os.system("cls || clear")
         if downloadquestion == 1:
             urls = listas()[0]
-            datas = listas()[1]
-            downloadtiktoks(urls, datas)
+            downloadtiktoks(urls)
             sys.exit()
         if downloadquestion == 2:
-            print("Option still not implemented")
+            print('Due to specific limitations of the current data method, downloading by creator will only get the latest 30 videos.')
+            print('This limitation is being actively researched, any contributions will be welcome.')
+            username = str(input('Enter the tiktok username here: '))
+            links = getLinks(username)
+            downloadtiktoks(links)
             sys.exit()
-            # PLACEHOLDER UNTIL I DO CODE
         
     ## STREAM
     if question == 2:
@@ -61,8 +63,10 @@ try:
                 sys.exit()
         
         if watchquestion == 2:
+            print('Due to specific limitations of the current data method, watching by creator will only get the latest 30 videos.')
+            print('This limitation is being actively researched, any contributions will be welcome.')
             username = str(input('Enter the tiktok username here: '))
-            by_user(username)
+            streamuser(username)
             sys.exit()
             
     print("The option you chose isn't valid.")

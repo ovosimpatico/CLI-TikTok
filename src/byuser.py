@@ -2,7 +2,7 @@ import requests
 import atoma
 import sys
 
-def by_user(username):
+def info(username):
 
     response = requests.get(f'https://proxitok.pussthecat.org/@{username}/rss')
     if response.status_code == 404:
@@ -11,24 +11,28 @@ def by_user(username):
     if str(response.content) == "b''":
         print("The specified account does not exist.")
         sys.exit()
-    feed = atoma.parse_rss_bytes(response.content)
+    return atoma.parse_rss_bytes(response.content)
 
-    if feed.description == None:
-        print("This account does not have a bio.")
-    else:
-        print(f'User: @{username}\nBio:\n')
-        print(feed.description)
-        print('')
+    # if feed.description == None:
+    #     print("This account does not have a bio.")
+    # else:
+        #print(feed.description) ## TIKTOK BIO
+    
+def getLinks(username):
+    feed = info(username)
+    linklist = []
+    
+    for i in range(len(feed.items)):
+        linklist.append('https://www.tiktok.com' + feed.items[i].link)
+    return linklist
 
-    ### GET TIKTOK VIDEO
-    try:
-        for i in range(len(feed.items)):
-            a = str(feed.items[i].link)
 
-            link = 'https://www.tiktok.com'+a
-        
-            from src.streaming import mpv
-            mpv(link)
+def streamuser(username):
+    links = getLinks(username)
 
-    except IndexError:
+    if len(links) == 0:
         print("This account is private or has no published videos.")
+
+    for i in range(len(links)):
+        from src.streaming import mpv
+        mpv(links[i])
