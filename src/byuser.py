@@ -1,12 +1,16 @@
-import requests
-import atoma
 import sys
+
+import atoma
+import requests
+
 
 def info(username):
 
-    response = requests.get(f'https://proxitok.pussthecat.org/@{username}/rss')
+    response = requests.get(f"https://proxitok.pussthecat.org/@{username}/rss")
     if response.status_code == 404:
-        print("Something went wrong while getting the information. Make sure the username was correctly inserted and try again.")
+        print(
+            "Something went wrong while getting the information. Make sure the username was correctly inserted and try again."
+        )
         sys.exit()
     if str(response.content) == "b''":
         print("The specified account does not exist.")
@@ -16,14 +20,15 @@ def info(username):
     # if feed.description == None:
     #     print("This account does not have a bio.")
     # else:
-        #print(feed.description) ## TIKTOK BIO
-    
+    #     print(feed.description) ## TIKTOK BIO
+
+
 def getLinks(username):
     feed = info(username)
     linklist = []
-    
+
     for i in range(len(feed.items)):
-        linklist.append('https://www.tiktok.com' + feed.items[i].link)
+        linklist.append("https://www.tiktok.com" + feed.items[i].link)
     return linklist
 
 
@@ -35,4 +40,5 @@ def streamuser(username):
 
     for i in range(len(links)):
         from src.streaming import mpv
+
         mpv(links[i])
