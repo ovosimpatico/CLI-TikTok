@@ -40,7 +40,7 @@ def init():
             "https://raw.githubusercontent.com/nanometer5088/CLI-TikTok/main/VERSION"
         )
         version = open("VERSION", "r", encoding="utf=8")
-        if version.readline().rstrip() > (data.text):
+        if version.readline().rstrip() < (data.text):
             system("cls || clear")
             input(
                 """

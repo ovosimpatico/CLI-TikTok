@@ -16,6 +16,7 @@ from src.byuser import getLinks, streamuser
 from src.downloader import downloadtiktoks
 from src.functions import listas
 from src.streaming import playback, playbackrandom
+from src.trending import streamtrending
 
 # Needlessly big code to simply prompt the user which action they want to do
 try:
@@ -67,10 +68,11 @@ try:
 
         watchquestion = int(
             input(
-                """Do you want to watch your liked videos or a creator?
+                """Do you want to watch your liked videos, a creator or trending videos?
         
         (1) Liked Videos
         (2) Creator
+        (3) Trending
         """
             )
         )
@@ -113,6 +115,15 @@ try:
             )
             username = str(input("Enter the tiktok username here: "))
             streamuser(username)
+            sys.exit()
+        if watchquestion == 3:
+            print(
+                "Due to specific limitations of the current data method, watching by creator will only get the latest 30 videos."
+            )
+            print(
+                "This limitation is being actively researched, any contributions will be welcome."
+            )
+            streamtrending()
             sys.exit()
 
     # Error handling for invalid number (3, 4, 6, 133)
