@@ -1,8 +1,9 @@
 import sys
-from log import logtofile as log
 
 import atoma
+
 import requests
+from log import logtofile as log
 from src.streaming import getVideoInfo
 
 
@@ -13,10 +14,14 @@ def info(username):
         print(
             "Something went wrong while getting the information. Make sure the username was correctly inserted and try again."
         )
-        log(f"https://tik.hostux.net/@{username}/rss returned a 404 error. The username is likely incorrect")
+        log(
+            f"https://tik.hostux.net/@{username}/rss returned a 404 error. The username is likely incorrect"
+        )
         sys.exit()
     if str(response.content) == "b''":
-        log("https://tik.hostux.net/@{username}/rss returned no information. The account likely does not exist")
+        log(
+            "https://tik.hostux.net/@{username}/rss returned no information. The account likely does not exist"
+        )
         print("The specified account does not exist.")
         sys.exit()
 
@@ -24,7 +29,7 @@ def info(username):
     #     log("This account does not have a bio.\n")
     # else:
     #     log(f"Bio: {str(response.description)}\n") ## TIKTOK BIO
-        
+
     return atoma.parse_rss_bytes(response.content)
 
 
@@ -41,9 +46,12 @@ def streamuser(username):
     links = getLinks(username)
 
     if len(links) == 0:
-        log("The link list is empty. The specified account is likely private or has no published videos")
+        log(
+            "The link list is empty. The specified account is likely private or has no published videos"
+        )
         print("This account is private or has no published videos.")
     from src.streaming import mpv, getVideoInfo
+
     for i in range(len(links)):
         url = getVideoInfo(links[i])
         mpv(url)

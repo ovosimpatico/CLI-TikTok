@@ -63,7 +63,7 @@ try:
         if downloadquestion == 2:
             log("The user chose to download videos from a creator")
             print(
-                "Due to specific limitations of the current data method, downloading by creator will only get the latest 30 videos."
+                "Due to specific limitations of the current data method, downloading by creator will only get the latest 24 videos."
             )
             print(
                 "This limitation is being actively researched, any contributions will be welcome."
@@ -122,7 +122,7 @@ try:
         if watchquestion == 2:
             log("The user chose to stream videos from a creator")
             print(
-                "Due to specific limitations of the current data method, watching by creator will only get the latest 30 videos."
+                "Due to specific limitations of the current data method, watching by creator will only get the latest 24 videos."
             )
             print(
                 "This limitation is being actively researched, any contributions will be welcome."
@@ -136,7 +136,7 @@ try:
         if watchquestion == 3:
             log("The user chose to stream trending videos\n")
             print(
-                "Due to specific limitations of the current data method, watching by creator will only get the latest 30 videos."
+                "Due to specific limitations of the current data method, watching by creator will only get the latest 24 videos."
             )
             print(
                 "This limitation is being actively researched, any contributions will be welcome."

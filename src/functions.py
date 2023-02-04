@@ -1,7 +1,8 @@
 import os
 import random
-from log import logtofile as log
+
 import requests
+from log import logtofile as log
 
 
 def listas():
@@ -37,6 +38,7 @@ def listas():
 def removevideo():
     if os.path.exists(os.getcwd() + "/video/video"):
         os.remove(os.getcwd() + "/video/video")
+
 
 # Broken as of 2023-02-03
 # A workaround has been put in place

@@ -1,6 +1,8 @@
 import sys
 from os import system
+
 from log import logtofile as log
+
 
 def init():
     # Intro for the user
@@ -39,6 +41,7 @@ def init():
     # If the user does not have internet access, warns him the software won't work properly and quit.
     try:
         import requests
+
         log("Started update / networking test")
         data = requests.get(
             "https://raw.githubusercontent.com/nanometer5088/CLI-TikTok/main/VERSION"
@@ -46,7 +49,9 @@ def init():
         version = open("VERSION", "r", encoding="utf=8")
         userversion = version.readline().rstrip()
         if userversion < (data.text):
-            log(f"New version detected! User version is {userversion}, but {data.text} was found on Github.")
+            log(
+                f"New version detected! User version is {userversion}, but {data.text} was found on Github."
+            )
             system("cls || clear")
             log("User was prompted to update")
             input(
@@ -65,10 +70,10 @@ def init():
             log("The user has internet acess and the software is up-to-date.")
         version.close()
     except requests.exceptions.ConnectionError:
-        log("A connection error was detected when trying to connect to https://raw.githubusercontent.com/ to check for updates.")
-        print(
-            "CLI-TikTok detected your device isn't connected to the internet"
+        log(
+            "A connection error was detected when trying to connect to https://raw.githubusercontent.com/ to check for updates."
         )
+        print("CLI-TikTok detected your device isn't connected to the internet")
         print(
             "This software requires a reliable and uncensored internet connection to properly work"
         )

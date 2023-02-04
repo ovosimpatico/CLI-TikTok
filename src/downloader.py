@@ -1,14 +1,16 @@
 import os
-from log import logtofile as log
-from src.functions import url_redirection
+
 from yt_dlp import YoutubeDL
 from yt_dlp.utils import DownloadError
+
+from log import logtofile as log
+from src.functions import url_redirection
+
 
 def downloader(url):
     ydl_opts = {
         "format": "bestvideo*+bestaudio/best",
-        "outtmpl": os.getcwd()
-        + "/video/by-creator/%(creator)s/%(id)s.%(ext)s",
+        "outtmpl": os.getcwd() + "/video/by-creator/%(creator)s/%(id)s.%(ext)s",
     }
     YoutubeDL(ydl_opts).download(url)
 
@@ -24,7 +26,7 @@ def downloadtiktoks(urls):
         \n\tPress ENTER to proceed...
         """
     )
-    
+
     if a != "":
         log(f"User denied to download {len(urls)} tiktoks - Software exited")
         print("Operation canceled.")
@@ -41,9 +43,11 @@ def downloadtiktoks(urls):
                 print("")
             except DownloadError:
                 print("This video is unavailable ")
-                log(f"Video {url} will not be downloaded - The video is unavailable (banned or taken down)")
+                log(
+                    f"Video {url} will not be downloaded - The video is unavailable (banned or taken down)"
+                )
                 errorcount.append(urls)
-                
+
         except IndexError:
             print("The tiktoks were downloaded")
             log("The tiktoks were downloaded")
