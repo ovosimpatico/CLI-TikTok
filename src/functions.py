@@ -1,6 +1,6 @@
 import os
 import random
-
+from log import logtofile as log
 import requests
 
 
@@ -28,7 +28,7 @@ def listas():
 
     for i in range(2, len(vet), 3):
         listadatas.append(vet[i - 2][1] + " " + vet[i - 2][2])
-
+    log("Likes.txt file was processed sucessfully")
     return listalinks, listadatas
 
 
@@ -38,7 +38,8 @@ def removevideo():
     if os.path.exists(os.getcwd() + "/video/video"):
         os.remove(os.getcwd() + "/video/video")
 
-
+# Broken as of 2023-02-03
+# A workaround has been put in place
 def detect_dead_link(url):
     # Detects if the video is available to be streamed or downloaded.
     dead_url_start_with = "https://www.tiktok.com/@/video"
@@ -52,7 +53,7 @@ def detect_dead_link(url):
 def url_redirection(url):
     # Tiktok links from the Likes.txt are shortened. They need to be redirected to the final link, which is done here.
     headers = {
-        "User-Agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/110.0.0.0 Safari/537.36"
+        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; rv:109.0) Gecko/20100101 Firefox/109.0"
     }
     response = requests.get(url, headers=headers)
     return response.url

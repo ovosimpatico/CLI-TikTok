@@ -1,12 +1,19 @@
 # Introduction and pre-test
+from log import logtofile as log
+
 import sys
 
 from src.init import init
 
 a = init()
+
 if a == -1:
     print("Dependencies installed successfully.\nOpen the program again\n")
+    log("Dependencies were installed, user was prompted to run the software again.")
     sys.exit()
+    
+log("Pre-test complete\n")
+
 
 # Import libraries and required functions after sucessful pre-test
 import os
@@ -19,6 +26,7 @@ from src.streaming import playback, playbackrandom
 from src.trending import streamtrending
 
 # Needlessly big code to simply prompt the user which action they want to do
+log("Main menu started")
 try:
     question = int(
         input(
@@ -46,12 +54,14 @@ try:
 
         ## Download liked videos
         if downloadquestion == 1:
+            log("The user chose to download liked videos\n")
             urls = listas()[0]
             downloadtiktoks(urls)
             sys.exit()
 
         ## Download creator
         if downloadquestion == 2:
+            log("The user chose to download videos from a creator")
             print(
                 "Due to specific limitations of the current data method, downloading by creator will only get the latest 30 videos."
             )
@@ -59,13 +69,14 @@ try:
                 "This limitation is being actively researched, any contributions will be welcome."
             )
             username = str(input("Enter the tiktok username here: "))
+            log(f"The creator chosen was: @{username}\n")
             links = getLinks(username)
             downloadtiktoks(links)
             sys.exit()
 
     ## Stream
     if question == 2:
-
+        
         watchquestion = int(
             input(
                 """Do you want to watch your liked videos, a creator or trending videos?
@@ -93,6 +104,7 @@ try:
 
             ## Stream liked videos randomized
             if randomquestion == 1:
+                log("The user chose to stream liked videos in shuffled mode\n")
                 urls = listas()[0]
                 datas = listas()[1]
                 playbackrandom(urls, datas)
@@ -100,6 +112,7 @@ try:
 
             ## Stream liked videos in descending order
             if randomquestion == 2:
+                log("The user chose to stream liked videos in regular mode\n")
                 urls = listas()[0]
                 datas = listas()[1]
                 playback(urls, datas)
@@ -107,6 +120,7 @@ try:
 
         ## Stream creator
         if watchquestion == 2:
+            log("The user chose to stream videos from a creator")
             print(
                 "Due to specific limitations of the current data method, watching by creator will only get the latest 30 videos."
             )
@@ -114,9 +128,13 @@ try:
                 "This limitation is being actively researched, any contributions will be welcome."
             )
             username = str(input("Enter the tiktok username here: "))
+            log(f"The creator chosen was: @{username}\n")
             streamuser(username)
             sys.exit()
+            
+        ## Stream trending videos
         if watchquestion == 3:
+            log("The user chose to stream trending videos\n")
             print(
                 "Due to specific limitations of the current data method, watching by creator will only get the latest 30 videos."
             )
@@ -127,25 +145,30 @@ try:
             sys.exit()
 
     # Error handling for invalid number (3, 4, 6, 133)
+    log("The user entered an invalid numeric choice, and the software exited")
     print("The option you chose isn't valid.")
 
     # Error handling for invalid input (ENTER, 't', '5ga')
 except ValueError:
+    log("The user entered an invalid non-numeric choice, and the software exited")
     print("The option you chose isn't valid.")
 
     # Error handling for missing Likes.txt file
 except FileNotFoundError:
+    log("The user does not have a Likes.txt file, but chose an option that depends on it, so the software exited")
     print(
         "The 'Likes.txt' file was not found. Make sure it is in the program folder and try again."
     )
 
     # Error handling for MPV media player or MPV not found in PATH
 except subprocess.CalledProcessError:
+    log("Tried to run MPV media player, but it was not found in the PATH, so the software exited")
     os.system("cls || clear")
     print(
-        "Mpv media player was not found on your system path. Make sure it's installed and try again."
+        "MPV media player was not found on your system path. Make sure it's installed and try again."
     )
 
     # Error handling for exiting the code with CTRL + C
 except KeyboardInterrupt:
+    log("The user used CTRL + C to force-stop the software.")
     print("\n\tKeyboardInterrupt was detected - Goodbye!")

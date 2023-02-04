@@ -1,6 +1,6 @@
 import sys
 from os import system
-
+from log import logtofile as log
 
 def init():
     # Intro for the user
@@ -10,14 +10,17 @@ def init():
     )
 
     # Detect and install libraries - If they aren't installed,
-    # the user is prompted to make the auto-installation.
+    # the user is prompted to make the automatic installation.
+    log("Started dependency test")
     try:
         import atoma
         import requests
         import yt_dlp
 
         system("cls || clear")
+        log("Dependency test sucessful!")
     except ModuleNotFoundError:
+        log("Dependency test failed - Missing library")
         system("cls || clear")
         input(
             """
@@ -27,6 +30,7 @@ def init():
      (You will need to open the program again afterwards)
               """
         )
+        log("User accepted automatic installation, running it.")
         system("pip install -r requirements.txt --user")
         system("cls || clear")
         return -1
@@ -35,13 +39,16 @@ def init():
     # If the user does not have internet access, warns him the software won't work properly and quit.
     try:
         import requests
-
+        log("Started update / networking test")
         data = requests.get(
             "https://raw.githubusercontent.com/nanometer5088/CLI-TikTok/main/VERSION"
         )
         version = open("VERSION", "r", encoding="utf=8")
-        if version.readline().rstrip() < (data.text):
+        userversion = version.readline().rstrip()
+        if userversion < (data.text):
+            log(f"New version detected! User version is {userversion}, but {data.text} was found on Github.")
             system("cls || clear")
+            log("User was prompted to update")
             input(
                 """
                       There's a new version available!
@@ -53,8 +60,12 @@ def init():
                         Press ENTER to proceed
                 """
             )
+            system("cls || clear")
+        else:
+            log("The user has internet acess and the software is up-to-date.")
         version.close()
     except requests.exceptions.ConnectionError:
+        log("A connection error was detected when trying to connect to https://raw.githubusercontent.com/ to check for updates.")
         print(
             "CLI-TikTok detected your device isn't connected to the internet"
         )
@@ -62,4 +73,5 @@ def init():
             "This software requires a reliable and uncensored internet connection to properly work"
         )
         print("Please try again with an internet connection")
+        log("The software exited, and the user was notified of the connection problem.")
         sys.exit()
