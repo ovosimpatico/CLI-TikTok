@@ -1,12 +1,13 @@
+import os
+import platform
 import sys
-from os import system
 
 from log import logtofile as log
 
 
 def init():
     # Intro for the user
-    system("cls || clear")
+    os.system("cls || clear")
     input(
         "Welcome to CLI TikTok, an open-source TikTok archiver and viewer!\nPress ENTER to proceed"
     )
@@ -18,12 +19,13 @@ def init():
         import atoma
         import requests
         import yt_dlp
+        import distro
 
-        system("cls || clear")
-        log("Dependency test sucessful!")
+        os.system("cls || clear")
+        log("Dependency test sucessful!\n")
     except ModuleNotFoundError:
         log("Dependency test failed - Missing library")
-        system("cls || clear")
+        os.system("cls || clear")
         input(
             """
         The program detected dependencies are not installed
@@ -33,10 +35,31 @@ def init():
               """
         )
         log("User accepted automatic installation, running it.")
-        system("pip install -r requirements.txt --user")
-        system("cls || clear")
+        os.system("pip install -r requirements.txt --user")
+        os.system("cls || clear")
         return -1
 
+    # Detect OS and Python version, and include this information in the log file
+    log("Started operating system and python detection")
+    if platform.system() == "Windows":
+        log(f"Operating System: Windows {platform.win32_ver()[0]}")
+    elif platform.system() == "Darwin":
+        log(f"Operating System: Mac OS {platform.mac_ver()}") # Untested, might break on Mac OS
+    elif platform.system() == "Linux":
+        import distro
+        log(f"Operating System: {distro.name()} {distro.version()} - {os.uname().release}")
+    elif (
+        platform.system() != "Windows"
+        or platform.system() != "Darwin"
+        or platform.system() != "Linux"
+    ):
+        log(f"Operating System: {platform.system()} - {platform.machine()}")
+
+    log(
+        f"Python {sys.version_info.major}.{sys.version_info.minor}.{sys.version_info.micro} - {sys.version_info.releaselevel}"
+    )
+
+    log("Operating System and Python detection finished!\n")
     # Search for updates, and prompts the user in case they're found.
     # If the user does not have internet access, warns him the software won't work properly and quit.
     try:
@@ -52,7 +75,7 @@ def init():
             log(
                 f"New version detected! User version is {userversion}, but {data.text} was found on Github."
             )
-            system("cls || clear")
+            os.system("cls || clear")
             log("User was prompted to update")
             input(
                 """
@@ -65,7 +88,7 @@ def init():
                         Press ENTER to proceed
                 """
             )
-            system("cls || clear")
+            os.system("cls || clear")
         else:
             log("The user has internet acess and the software is up-to-date.")
         version.close()

@@ -11,7 +11,7 @@ if a == -1:
     print("Dependencies installed successfully.\nOpen the program again\n")
     log("Dependencies were installed, user was prompted to run the software again.")
     sys.exit()
-    
+
 log("Pre-test complete\n")
 
 
@@ -76,7 +76,7 @@ try:
 
     ## Stream
     if question == 2:
-        
+
         watchquestion = int(
             input(
                 """Do you want to watch your liked videos, a creator or trending videos?
@@ -131,7 +131,7 @@ try:
             log(f"The creator chosen was: @{username}\n")
             streamuser(username)
             sys.exit()
-            
+
         ## Stream trending videos
         if watchquestion == 3:
             log("The user chose to stream trending videos\n")
@@ -155,14 +155,18 @@ except ValueError:
 
     # Error handling for missing Likes.txt file
 except FileNotFoundError:
-    log("The user does not have a Likes.txt file, but chose an option that depends on it, so the software exited")
+    log(
+        "The user does not have a Likes.txt file, but chose an option that depends on it, so the software exited"
+    )
     print(
         "The 'Likes.txt' file was not found. Make sure it is in the program folder and try again."
     )
 
     # Error handling for MPV media player or MPV not found in PATH
 except subprocess.CalledProcessError:
-    log("Tried to run MPV media player, but it was not found in the PATH, so the software exited")
+    log(
+        "Tried to run MPV media player, but it was not found in the PATH, so the software exited"
+    )
     os.system("cls || clear")
     print(
         "MPV media player was not found on your system path. Make sure it's installed and try again."

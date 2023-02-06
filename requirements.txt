@@ -1,3 +1,4 @@
 yt_dlp
 requests
 atoma
+distro
