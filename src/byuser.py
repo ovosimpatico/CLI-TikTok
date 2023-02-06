@@ -20,7 +20,7 @@ def info(username):
         sys.exit()
     if str(response.content) == "b''":
         log(
-            "https://tik.hostux.net/@{username}/rss returned no information. The account likely does not exist"
+            f"https://tik.hostux.net/@{username}/rss returned no information. The account likely does not exist"
         )
         print("The specified account does not exist.")
         sys.exit()
