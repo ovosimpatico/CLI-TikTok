@@ -153,13 +153,13 @@ except ValueError:
     log("The user entered an invalid non-numeric choice, and the software exited")
     print("The option you chose isn't valid.")
 
-    # Error handling for missing Likes.txt file
+    # Error handling for missing user_data.json file
 except FileNotFoundError:
     log(
-        "The user does not have a Likes.txt file, but chose an option that depends on it, so the software exited"
+        "The user does not have a user_data.json file, but chose an option that depends on it, so the software exited"
     )
     print(
-        "The 'Likes.txt' file was not found. Make sure it is in the program folder and try again."
+        "The 'user_data.json' file was not found. Make sure it is in the program folder and try again."
     )
 
     # Error handling for MPV media player or MPV not found in PATH

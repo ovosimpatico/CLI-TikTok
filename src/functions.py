@@ -4,8 +4,8 @@ import random
 import requests
 from log import logtofile as log
 
-
-def listas():
+## DEPRECATED - USE user_data.json instead
+def listas_deprecated():
     # Retrieves tiktok links and dates from Likes.txt
     i = 0
     arquivo = open("Likes.txt", "r", encoding="utf-8")
@@ -32,6 +32,21 @@ def listas():
     log("Likes.txt file was processed sucessfully")
     return listalinks, listadatas
 
+def listas():
+    # Retrieves tiktok likes and dates from user_data.json
+    import json
+    f = open('user_data.json')
+    linklist = []
+    datelist = []
+    data = json.load(f)
+
+    for i in data['Activity']["Like List"]['ItemFavoriteList']:
+        linklist.append(i['Link'])
+        datelist.append(i['Date'])
+    f.close()
+    log("user_data.json file was processed sucessfully")
+    return linklist, datelist
+
 
 # Unused function - Might be useful in future iterations of the project
 # https://github.com/nanometer5088/CLI-TikTok/commit/ad589d7b324042ee85a270625df3ad9f6f82ab8a
@@ -53,7 +68,7 @@ def detect_dead_link(url):
 
 
 def url_redirection(url):
-    # Tiktok links from the Likes.txt are shortened. They need to be redirected to the final link, which is done here.
+    # Tiktok links from the user_data.json are shortened. They need to be redirected to the final link, which is done here.
     headers = {
         "User-Agent": "Mozilla/5.0 (Windows NT 10.0; rv:109.0) Gecko/20100101 Firefox/109.0"
     }
@@ -62,5 +77,5 @@ def url_redirection(url):
 
 
 def randomvideo(urls):
-    # Chooses a random video from Likes.txt - Optional Feature
+    # Chooses a random video from user_data.json - Optional Feature
     return random.randint(0, (len(urls) - 1))

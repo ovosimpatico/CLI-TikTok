@@ -1,4 +1,4 @@
-## How to get your `Likes.txt` file:
+## How to get your `user_data.json` file:
 
 #
 
@@ -10,7 +10,7 @@
 
 ![2](assets/2.png)
 
-### 3. Select `TXT` as the file format and request your data. This process might take a couple days. You'll be notified once it's ready to download.
+### 3. Select `JSON` as the file format and request your data. This process might take a couple days. You'll be notified once it's ready to download.
 
 ![3](assets/3.png)
 
@@ -18,6 +18,6 @@
 
 ![4](assets/4.png)
 
-### 5. Your liked videos will be in `Activity\Like List.txt`. Rename the file as `Likes.txt`
+### 5. Your liked videos will be inside the compressed file. Extract the file to the software folder.
 
 ![5](assets/5.png)

@@ -130,6 +130,8 @@ dmypy.json
 
 #Project files
 Likes.txt
+user_data.json
 features-missing.txt
 /video
 /logs
+test.py

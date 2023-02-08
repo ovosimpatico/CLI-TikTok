@@ -33,13 +33,11 @@ This is a TikTok archiver and viewer. It supports watching or archiving your lik
 
 4) Extract **all** files to an empty folder.
 
-5) Move your `Likes.txt` file to the folder. Refer to [How to get video list](https://github.com/nanometer5088/CLI-TikTok/blob/main/docs/HowToGetVideoList.md) for more details on how to get yours.
+5) Move your `user_data.json` file to the folder. Refer to [How to get video list](https://github.com/nanometer5088/CLI-TikTok/blob/main/docs/HowToGetVideoList.md) for more details on how to get yours.
 
 6) Open a terminal within the folder.
 
-7) `pip install -r requirements.txt`
-
-8) `main.py`
+7) Run `main.py`
 
 ## Contributing
 
