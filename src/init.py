@@ -1,3 +1,14 @@
+# This code is the initialization script for CLI TikTok. It performs the following tasks:
+
+#     Clears the console screen
+#     Welcomes the user and waits for the user to press the "ENTER" key to proceed.
+#     Tests for required dependencies and installs them if missing.
+#     Determines the operating system and Python version.
+#     Checks for available updates to the software.
+#     If an internet connection is not available, it informs the user and exits the program.
+
+# The code also uses the log function to log important events during the execution of the script.
+
 import os
 import platform
 import sys
@@ -6,14 +17,11 @@ from log import logtofile as log
 
 
 def init():
-    # Intro for the user
     os.system("cls || clear")
     input(
         "Welcome to CLI TikTok, an open-source TikTok archiver and viewer!\nPress ENTER to proceed"
     )
 
-    # Detect and install libraries - If they aren't installed,
-    # the user is prompted to make the automatic installation.
     log("Started dependency test")
     try:
         import atoma
@@ -39,7 +47,6 @@ def init():
         os.system("cls || clear")
         return -1
 
-    # Detect OS and Python version, and include this information in the log file
     log("Started operating system and python detection")
     if platform.system() == "Windows":
         log(f"Operating System: Windows {platform.win32_ver()[0]}")
@@ -60,8 +67,7 @@ def init():
     )
 
     log("Operating System and Python detection finished!\n")
-    # Search for updates, and prompts the user in case they're found.
-    # If the user does not have internet access, warns him the software won't work properly and quit.
+
     try:
         import requests
 
