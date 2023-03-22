@@ -18,6 +18,10 @@
     <li><a href="#disclaimer">Disclaimer</a></li>
 </ol>
 
+<p align="center">
+Please note that the main branch of this project may not be stable or even functional at the moment, as we are currently in the process of rewriting the project to include a GUI made in C. If you wish to use the project, we recommend using the [CLI-Python branch](https://github.com/nanometer5088/CLI-TikTok/tree/CLI-Python), which is still actively maintained and functional. We will continue to provide maintenance updates for the CLI-Python branch until the GUI is complete. Thank you for your understanding and patience as we work to improve the project.
+</p>
+
 ## About the project
 This is a TikTok archiver and viewer. It supports watching or archiving your liked tiktoks or from a specific creator.
 
