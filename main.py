@@ -1,11 +1,29 @@
-# Introduction and pre-test
+# Detect and handle launch with arguments
+
+import argparse
+parser = argparse.ArgumentParser()
+parser.add_argument("--downloadliked", type=str)
+parser.add_argument("--downloadcreator", type=str)
+
+parser.add_argument("--streamlikedrandom", type=str)
+parser.add_argument("--streamliked", type=str)
+
+parser.add_argument("--streamcreator", type=str)
+parser.add_argument("--streamtrending", type=str)
+
+args = parser.parse_args()
+
 from log import logtofile as log
 
 import sys
-
+# Introduction and pre-test
 from src.init import init
 
-a = init()
+silent = True
+if len(sys.argv) <= 1:
+    silent = False
+    
+a = init(silent)
 
 if a == -1:
     print("Dependencies installed successfully.\nOpen the program again\n")
@@ -24,7 +42,6 @@ from src.downloader import downloadtiktoks
 from src.functions import listas
 from src.streaming import playback, playbackrandom
 from src.trending import streamtrending
-
 
 def main():
     # Needlessly big code to simply prompt the user which action they want to do
@@ -178,8 +195,59 @@ def main():
     except KeyboardInterrupt:
         log("The user used CTRL + C to force-stop the software.")
         print("\n\tKeyboardInterrupt was detected - Goodbye!")
-        
-main()
+
 
 # Warning, this section is experimental and will only run if you use any launch arguments
 # GUI Code:
+
+def arguments(args):
+    log("Running using launch arguments")
+
+    if args.downloadliked:
+        urls = listas()[0]
+        downloadtiktoks(urls)
+
+    elif args.downloadcreator:
+        username = args.downloadcreator
+        log(f"The creator chosen was: @{username}\n")
+        links = getLinks(username)
+        downloadtiktoks(links)
+
+    elif args.streamlikedrandom:
+        log("The user chose to stream liked videos in shuffled mode\n")
+        urls = listas()[0]
+        datas = listas()[1]
+        playbackrandom(urls, datas)
+
+    elif args.streamliked:
+        log("The user chose to stream liked videos in regular mode\n")
+        urls = listas()[0]
+        datas = listas()[1]
+        playback(urls, datas)
+
+    elif args.streamcreator:
+        log("The user chose to stream videos from a creator")
+        print(
+            "Due to specific limitations of the current data method, watching by creator will only get the latest 24 videos."
+        )
+        print(
+            "This limitation is being actively researched, any contributions will be welcome."
+        )
+        username = args.streamcreator
+        log(f"The creator chosen was: @{username}\n")
+        streamuser(username)
+
+    elif args.streamtrending:
+        log("The user chose to stream trending videos\n")
+        print(
+            "Due to specific limitations of the current data method, watching by creator will only get the latest 24 videos."
+        )
+        print(
+            "This limitation is being actively researched, any contributions will be welcome."
+        )
+        streamtrending()
+        
+if silent:
+    arguments(args)
+else:
+    main()

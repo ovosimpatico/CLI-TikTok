@@ -21,10 +21,13 @@ def clear_screen():
     os.system("cls" if os.name == "nt" else "clear")
 
 
-def init():
+def init(silent):
     clear_screen()
-    print("Welcome to CLI TikTok, an open-source TikTok archiver and viewer!")
-    input("Press ENTER to proceed")
+    
+    if not silent:
+        
+        print("Welcome to CLI TikTok, an open-source TikTok archiver and viewer!")
+        input("Press ENTER to proceed")
 
     log("Started dependency test")
     required_libraries = ["atoma", "requests", "yt_dlp", "distro"]

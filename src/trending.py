@@ -32,9 +32,8 @@ This is likely an issue with your internet connection or with the API."""
 def getLinksTrending():
     feed = getInfoTrending()
     linklist = []
-
-    for i in range(len(feed.items)):
-        linklist.append("https://www.tiktok.com" + feed.items[i].link)
+    for i in feed.items:
+        linklist.append(f"https://www.tiktok.com/" + i.link.split("/")[3] + "/video/" + i.link.split("/")[5])
     return linklist
 
 
