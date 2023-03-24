@@ -48,9 +48,9 @@ def init():
     log("Started update / networking test")
     try:
         import ast
-        data = requests.get("https://raw.githubusercontent.com/nanometer5088/CLI-TikTok/main/src/constants.py")
+        link = requests.get("https://raw.githubusercontent.com/nanometer5088/CLI-TikTok/main/src/constants.py")
         userversion = _read_user_version()
-        data = str(ast.literal_eval(data.text.split("APP = ")[1])["version"])
+        data = str(ast.literal_eval(link.text.split("APP = ")[1])["version"])
         if userversion < data:
             log(f"New version detected! User version is {userversion}, but {data} was found on Github.")
             clear_screen()
@@ -61,13 +61,19 @@ def init():
             clear_screen()
 
     except requests.exceptions.ConnectionError:
-        clear_screen()
         log("A connection error was detected when trying to connect to https://raw.githubusercontent.com/ to check for updates.")
-        print("CLI-TikTok detected your device isn't connected to the internet.")
-        print("This software requires a reliable and uncensored internet connection to properly work.")
-        print("Please try again with an internet connection.")
-        log("The software exited, and the user was notified of the connection problem.")
-        sys.exit()
+        try:
+            for site in ["https://www.eff.org", "https://freedom.press", "https://www.torproject.org", "https://www.privacyguides.org"]:
+                requests.get(site)
+            log("The user seems to be connected to the internet, but Github is not accessible. Dazed and confused, but trying to continue.")
+            clear_screen()
+        except requests.exceptions.ConnectionError:
+            clear_screen()
+            print("CLI-TikTok detected your device isn't connected to the internet.")
+            print("This software requires a reliable and uncensored internet connection to properly work.")
+            print("Please try again with an internet connection.")
+            log("The software exited, and the user was notified of the connection problem.")
+            sys.exit()
 
 
 def _library_exists(library):
