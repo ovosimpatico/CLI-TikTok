@@ -7,7 +7,7 @@ from log import logtofile as log
 from src.streaming import mpv, getVideoInfo
 
 def info(username):
-    rss_url = f"https://tik.hostux.net/@{username}/rss"
+    rss_url = f"https://proxitok.pabloferreiro.es/@{username}/rss"
     response = requests.get(rss_url)
 
     if response.status_code == 404:
@@ -25,7 +25,9 @@ def info(username):
 
 def getLinks(username):
     feed = info(username)
-    links = ["https://www.tiktok.com" + item.link for item in feed.items]
+    links = []
+    for i in feed.items:
+        links.append(f"https://www.tiktok.com/@{username}/video/" + i.guid)
     return links
 
 def streamuser(username):

@@ -57,6 +57,8 @@ def init():
         else:
             log("The user has internet access and the software is up-to-date.\n")
             clear_screen()
+    except FileNotFoundError:
+        pass
     except requests.exceptions.ConnectionError:
         clear_screen()
         log("A connection error was detected when trying to connect to https://raw.githubusercontent.com/ to check for updates.")
