@@ -47,10 +47,12 @@ def init():
 
     log("Started update / networking test")
     try:
-        data = requests.get("https://raw.githubusercontent.com/nanometer5088/CLI-TikTok/main/VERSION")
+        import ast
+        data = requests.get("https://raw.githubusercontent.com/nanometer5088/CLI-TikTok/main/src/constants.py")
         userversion = _read_user_version()
-        if userversion < data.text:
-            log(f"New version detected! User version is {userversion}, but {data.text} was found on Github.")
+        data = str(ast.literal_eval(data.text.split("APP = ")[1])["version"])
+        if userversion < data:
+            log(f"New version detected! User version is {userversion}, but {data} was found on Github.")
             clear_screen()
             input("\tThere's a new version available!\n\tUpdates bring performance and feature improvements!\n\tDownload the new version here:\n\thttps://github.com/nanometer5088/CLI-TikTok/archive/refs/heads/main.zip\n\n\tPress ENTER to proceed")
             clear_screen()
