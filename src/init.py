@@ -52,13 +52,12 @@ def init():
         if userversion < data.text:
             log(f"New version detected! User version is {userversion}, but {data.text} was found on Github.")
             clear_screen()
-            input("There's a new version available!\nUpdates bring performance and feature improvements!\nDownload the new version here:\nhttps://github.com/nanometer5088/CLI-TikTok/archive/refs/heads/main.zip\nPress ENTER to proceed")
+            input("\tThere's a new version available!\n\tUpdates bring performance and feature improvements!\n\tDownload the new version here:\n\thttps://github.com/nanometer5088/CLI-TikTok/archive/refs/heads/main.zip\n\n\tPress ENTER to proceed")
             clear_screen()
         else:
             log("The user has internet access and the software is up-to-date.\n")
             clear_screen()
-    except FileNotFoundError:
-        pass
+
     except requests.exceptions.ConnectionError:
         clear_screen()
         log("A connection error was detected when trying to connect to https://raw.githubusercontent.com/ to check for updates.")
@@ -95,5 +94,5 @@ def _get_python_version():
 
 
 def _read_user_version():
-    with open("VERSION", "r", encoding="utf-8") as f:
-        return f.readline().rstrip()
+    from src.constants import APP
+    return str(APP["version"])
