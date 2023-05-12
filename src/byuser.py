@@ -1,4 +1,7 @@
+import time
+
 import requests
+from bs4 import BeautifulSoup
 
 from log import logtofile as log
 from src.streaming import getVideoInfo, mpv
@@ -14,10 +17,6 @@ def streamuser(username):
         url = getVideoInfo(link)
         mpv(url)
         log(f"Video {link} was played.")
-
-import time
-
-from bs4 import BeautifulSoup
 
 
 def proxitok_scraper(username: str) -> list[str]:
