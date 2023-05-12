@@ -1,6 +1,7 @@
 # Detect and handle launch with arguments
 
 import argparse
+
 parser = argparse.ArgumentParser()
 parser.add_argument("--downloadliked", type=str)
 parser.add_argument("--downloadcreator", type=str)
@@ -13,9 +14,10 @@ parser.add_argument("--streamtrending", type=str)
 
 args = parser.parse_args()
 
+import sys
+
 from log import logtofile as log
 
-import sys
 # Introduction and pre-test
 from src.init import init
 
@@ -37,11 +39,12 @@ log("Pre-test complete\n")
 import os
 import subprocess
 
-from src.byuser import getLinks, streamuser
+from src.byuser import proxitok_scraper, streamuser
 from src.downloader import downloadtiktoks
 from src.functions import listas
 from src.streaming import playback, playbackrandom
 from src.trending import streamtrending
+
 
 def main():
     # Needlessly big code to simply prompt the user which action they want to do
@@ -81,16 +84,10 @@ def main():
             ## Download creator
             if downloadquestion == 2:
                 log("The user chose to download videos from a creator")
-                print(
-                    "Due to specific limitations of the current data method, downloading by creator will only get the latest 24 videos."
-                )
-                print(
-                    "This limitation is being actively researched, any contributions will be welcome."
-                )
                 username = str(input("Enter the tiktok username here: "))
                 log(f"The creator chosen was: @{username}\n")
-                links = getLinks(username)
-                downloadtiktoks(links)
+                links = proxitok_scraper(username)
+                downloadtiktoks(links) # add handling for when zero links are passed
                 sys.exit()
 
         ## Stream
@@ -140,12 +137,6 @@ def main():
             ## Stream creator
             if watchquestion == 2:
                 log("The user chose to stream videos from a creator")
-                print(
-                    "Due to specific limitations of the current data method, watching by creator will only get the latest 24 videos."
-                )
-                print(
-                    "This limitation is being actively researched, any contributions will be welcome."
-                )
                 username = str(input("Enter the tiktok username here: "))
                 log(f"The creator chosen was: @{username}\n")
                 streamuser(username)
@@ -210,8 +201,8 @@ def arguments(args):
     elif args.downloadcreator:
         username = args.downloadcreator
         log(f"The creator chosen was: @{username}\n")
-        links = getLinks(username)
-        downloadtiktoks(links)
+        links = proxitok_scraper(username)
+        downloadtiktoks(links) # add handling for when zero links are passed
 
     elif args.streamlikedrandom:
         log("The user chose to stream liked videos in shuffled mode\n")
@@ -227,12 +218,6 @@ def arguments(args):
 
     elif args.streamcreator:
         log("The user chose to stream videos from a creator")
-        print(
-            "Due to specific limitations of the current data method, watching by creator will only get the latest 24 videos."
-        )
-        print(
-            "This limitation is being actively researched, any contributions will be welcome."
-        )
         username = args.streamcreator
         log(f"The creator chosen was: @{username}\n")
         streamuser(username)
