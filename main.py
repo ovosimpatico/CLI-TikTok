@@ -151,7 +151,7 @@ def main():
                 print(
                     "This limitation is being actively researched, any contributions will be welcome."
                 )
-                streamtrending()
+                streamtrending(24) # need to implement asking how many trending videos the user wants 
                 sys.exit()
 
         # Error handling for invalid number (3, 4, 6, 133)
@@ -230,7 +230,7 @@ def arguments(args):
         print(
             "This limitation is being actively researched, any contributions will be welcome."
         )
-        streamtrending()
+        streamtrending(24) # need to implement asking how many trending videos the user wants
         
 if silent:
     arguments(args)
