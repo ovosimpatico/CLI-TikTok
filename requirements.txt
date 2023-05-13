@@ -2,3 +2,4 @@ yt_dlp
 requests
 atoma
 distro
+bs4
