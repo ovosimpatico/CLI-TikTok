@@ -22,6 +22,8 @@ def streamtrending(amount:int = 24):
 
 
 def proxitok_trending(amount: int = 24) -> list[str]:
+    from src.constants import APP
+    log("Scraper started")
     print("\nObtaining URLs - this can take a while when requesting many posts.")
     session = requests.Session()
     direct_links = []
@@ -29,15 +31,17 @@ def proxitok_trending(amount: int = 24) -> list[str]:
     rate_limit = 0
     while True:
         # The "next" page url is always the same but loads different trending videos each time
-        url = f"https://proxitok.pussthecat.org/trending{next_href}"
+        url = f"{APP['proxitok_instance']}/trending{next_href}"
+        # url = f"https://proxitok.pussthecat.org/trending{next_href}"
         response = session.get(url)
-        print(url)
+        log(f"Scraping {url}")
         
         if response.status_code == 429 or response.status_code == 403:
             # may want to adjust this ratio
             rate_limit += 1
             sleep_time = 30 * rate_limit
             print(f"{response.status_code} {response.reason} sleeping for {sleep_time}")
+            log(f"\n{response.status_code} {response.reason} sleeping for {sleep_time}")
             time.sleep(sleep_time)
             continue
 

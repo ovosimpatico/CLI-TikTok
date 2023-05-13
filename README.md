@@ -35,11 +35,20 @@ This is a TikTok archiver and viewer. It supports watching or archiving your lik
 
 4) Extract **all** files to an empty folder.
 
-5) Move your `user_data.json` file to the folder. Refer to [How to get video list](https://github.com/nanometer5088/CLI-TikTok/blob/main/docs/HowToGetVideoList.md) for more details on how to get yours.
+5) Move your `user_data.json` file to the folder. Refer to [How to get video list](docs/HowToGetVideoList.md)
+ for more details on how to get yours.
 
 6) Open a terminal within the folder.
 
 7) Run `main.py`
+
+## A note about web scraping
+
+This software scrapes a third-party website (Proxitok) to obtain the data required. In a larger scale, this can be very bad for the website administrators.
+
+[See my in-depth note about this here](docs/WebScraping.md)
+
+If you use CLI Tiktok for more than light tasks, consider [running your own Proxitok instance](https://github.com/pablouser1/ProxiTok/wiki/Self-hosting).
 
 ## Contributing
 

@@ -6,7 +6,6 @@ from bs4 import BeautifulSoup
 from log import logtofile as log
 from src.streaming import getVideoInfo, mpv
 
-
 def streamuser(username):
     links = proxitok_scraper(username)
 
@@ -20,20 +19,24 @@ def streamuser(username):
 
 
 def proxitok_scraper(username: str) -> list[str]:
+    from src.constants import APP
+    log("Scraper started")
     print("\nObtaining URLs - this can take a while with users with many posts.")
     session = requests.Session()
     direct_links = []
     next_href = ""
     rate_limit = 0
     while True:
-        url = f"https://proxitok.pussthecat.org/@{username}{next_href}"
+        url = f"{APP['proxitok_instance']}/@{username}{next_href}"
         response = session.get(url)
+        log(f"Scraping {url}")
         
         if response.status_code == 429 or response.status_code == 403:
             # may want to adjust this ratio
             rate_limit += 1
             sleep_time = 30 * rate_limit
             print(f"{response.status_code} {response.reason} sleeping for {sleep_time}")
+            log(f"\n{response.status_code} {response.reason} sleeping for {sleep_time}")
             time.sleep(sleep_time)
             continue
 
