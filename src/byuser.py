@@ -20,7 +20,7 @@ def streamuser(username):
 
 
 def proxitok_scraper(username: str) -> list[str]:
-    print("Obtaining URLs - this can take a while with users with many posts.")
+    print("\nObtaining URLs - this can take a while with users with many posts.")
     session = requests.Session()
     direct_links = []
     next_href = ""

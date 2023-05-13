@@ -145,13 +145,9 @@ def main():
             ## Stream trending videos
             if watchquestion == 3:
                 log("The user chose to stream trending videos\n")
-                print(
-                    "Due to specific limitations of the current data method, watching by creator will only get the latest 24 videos."
-                )
-                print(
-                    "This limitation is being actively researched, any contributions will be welcome."
-                )
-                streamtrending(24) # need to implement asking how many trending videos the user wants 
+                videos = int(input("How many videos do you want to see? "))
+                if videos >= 1:
+                    streamtrending(videos)
                 sys.exit()
 
         # Error handling for invalid number (3, 4, 6, 133)
@@ -224,14 +220,9 @@ def arguments(args):
 
     elif args.streamtrending:
         log("The user chose to stream trending videos\n")
-        print(
-            "Due to specific limitations of the current data method, watching by creator will only get the latest 24 videos."
-        )
-        print(
-            "This limitation is being actively researched, any contributions will be welcome."
-        )
-        streamtrending(24) # need to implement asking how many trending videos the user wants
-        
+        videos = int(args.streamtrending)
+        if videos >= 1:
+            streamtrending(videos)       
 if silent:
     arguments(args)
 else:

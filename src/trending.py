@@ -22,7 +22,7 @@ def streamtrending(amount:int = 24):
 
 
 def proxitok_trending(amount: int = 24) -> list[str]:
-    print("Obtaining URLs - this can take a while when requesting many posts.")
+    print("\nObtaining URLs - this can take a while when requesting many posts.")
     session = requests.Session()
     direct_links = []
     next_href = ""

@@ -4,34 +4,6 @@ import random
 import requests
 from log import logtofile as log
 
-## DEPRECATED - USE user_data.json instead
-def listas_deprecated():
-    # Retrieves tiktok links and dates from Likes.txt
-    i = 0
-    arquivo = open("Likes.txt", "r", encoding="utf-8")
-    linhas = arquivo.readlines()
-    tamanho = len(linhas)
-    arquivo.close()
-
-    vet = []
-    listalinks = []
-    listadatas = []
-    arquivo = open("Likes.txt", "r", encoding="utf-8")
-
-    while i <= tamanho:
-        lelinha = arquivo.readline().rstrip()
-        vet.append(lelinha.split())
-        i += 1
-    arquivo.close()
-
-    for i in range(2, len(vet), 3):
-        listalinks.append(vet[i - 1][1])
-
-    for i in range(2, len(vet), 3):
-        listadatas.append(vet[i - 2][1] + " " + vet[i - 2][2])
-    log("Likes.txt file was processed sucessfully")
-    return listalinks, listadatas
-
 def listas():
     # Retrieves tiktok likes and dates from user_data.json
     import json
@@ -46,13 +18,6 @@ def listas():
     f.close()
     log("user_data.json file was processed sucessfully")
     return linklist, datelist
-
-
-# Unused function - Might be useful in future iterations of the project
-# https://github.com/nanometer5088/CLI-TikTok/commit/ad589d7b324042ee85a270625df3ad9f6f82ab8a
-def removevideo():
-    if os.path.exists(os.getcwd() + "/video/video"):
-        os.remove(os.getcwd() + "/video/video")
 
 
 # Broken as of 2023-02-03
@@ -70,7 +35,8 @@ def detect_dead_link(url):
 def url_redirection(url):
     # Tiktok links from the user_data.json are shortened. They need to be redirected to the final link, which is done here.
     headers = {
-        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; rv:109.0) Gecko/20100101 Firefox/109.0"
+        # Chrome 113 on Windows 10 - Common useragent to reduce chances of a captcha
+        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/113.0.0.0 Safari/537.36"
     }
     response = requests.get(url, headers=headers)
     return response.url
