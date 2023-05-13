@@ -11,8 +11,9 @@
 [![License][license-shield]][license-url]
 
 <ol>
-    <li><a href="#about-the-project">About The Project</a></li>
+    <li><a href="#about-the-project">About the Project</a></li>
     <li><a href="#installation">Installation</a></li>
+    <li><a href="#a-note-about-web-scraping">Web Scraping Warning</a></li>
     <li><a href="#contributing">Contributing</a></li>
     <li><a href="#acknowledgements">Acknowledgements</a></li>
     <li><a href="#disclaimer">Disclaimer</a></li>
