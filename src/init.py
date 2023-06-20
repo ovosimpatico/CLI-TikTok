@@ -30,7 +30,7 @@ def init(silent):
         input("Press ENTER to proceed")
 
     log("Started dependency test")
-    required_libraries = ["atoma", "requests", "yt_dlp", "distro", "bs4"]
+    required_libraries = ["requests", "yt_dlp", "distro", "bs4"]
     missing_libraries = [library for library in required_libraries if not _library_exists(library)]
     if missing_libraries:
         log("Dependency test failed - Missing libraries: " + ", ".join(missing_libraries))
