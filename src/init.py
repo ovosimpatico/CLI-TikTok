@@ -50,10 +50,14 @@ def init(silent):
 
     log("Started update / networking test")
     try:
-        import ast
-        link = requests.get("https://raw.githubusercontent.com/nanometer5088/CLI-TikTok/main/src/constants.py")
+        link = requests.get("https://raw.githubusercontent.com/nanometer5088/CLI-TikTok/main/src/constants.py").text.strip() 
+
         userversion = _read_user_version()
-        data = str(ast.literal_eval(link.text.split("APP = ")[1])["version"])
+        
+        version_line = next(line for line in link.split('\n') 
+                    if line.startswith('    "version": '))
+        data = version_line.split(': ')[1]
+        
         if userversion < data:
             log(f"New version detected! User version is {userversion}, but {data} was found on Github.")
             clear_screen()
