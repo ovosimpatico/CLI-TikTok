@@ -19,7 +19,7 @@ def streamuser(username):
 
 
 def proxitok_scraper(username: str) -> list[str]:
-    from src.constants import APP
+    from src.constants import OPTIONS
     log("Scraper started")
     print("\nObtaining URLs - this can take a while with users with many posts.")
     session = requests.Session()
@@ -27,7 +27,7 @@ def proxitok_scraper(username: str) -> list[str]:
     next_href = ""
     rate_limit = 0
     while True:
-        url = f"{APP['proxitok_instance']}/@{username}{next_href}"
+        url = f"{OPTIONS['proxitok_instance']}/@{username}{next_href}"
         response = session.get(url)
         log(f"Scraping {url}")
         
