@@ -6,6 +6,7 @@ from yt_dlp.utils import DownloadError
 
 from log import logtofile as log
 from src.functions import url_redirection
+from src.constants import OPTIONS
 
 
 def getVideoInfo(url):
@@ -15,7 +16,7 @@ def getVideoInfo(url):
 
 
 def mpv(url):
-    subprocess.check_output(f'mpv "{getVideoInfo(url)}"', shell=True)
+    subprocess.check_output(f'{OPTIONS["player_command"]} "{getVideoInfo(url)}"', shell=True)
 
 
 def playbackrandom(urls, datas):

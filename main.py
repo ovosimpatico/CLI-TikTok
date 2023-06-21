@@ -171,11 +171,12 @@ def main():
         # Error handling for MPV media player or MPV not found in PATH
     except subprocess.CalledProcessError:
         log(
-            "Tried to run MPV media player, but it was not found in the PATH, so the software exited"
+            "Tried to run media player, but it was either not found in the PATH or incorrectly configured on src/constants.py, so the software exited"
         )
         os.system("cls || clear")
         print(
-            "MPV media player was not found on your system path. Make sure it's installed and try again."
+            """The media player was either not found in the PATH or incorrectly configured on src/constants.py.
+            If you never modified constants.py, install MPV and try again"""
         )
 
         # Error handling for exiting the code with CTRL + C
