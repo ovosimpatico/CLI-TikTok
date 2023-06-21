@@ -1,7 +1,7 @@
 # Do not change anything here
 APP = {
     "name": "CLI TikTok",
-    "version": 0.82
+    "version": 0.85
 }
 
 

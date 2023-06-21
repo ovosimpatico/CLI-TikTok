@@ -10,7 +10,8 @@ from src.functions import url_redirection
 def downloader(url):
     ydl_opts = {
         "format": "bestvideo*+bestaudio/best",
-        "outtmpl": os.getcwd() + "/video/by-creator/%(creator)s/%(id)s.%(ext)s",
+        "outtmpl": os.getcwd() + "/video/%(creator)s/%(id)s.%(ext)s",
+        "download_archive": os.getcwd() + "/video/.video_archive"
     }
     YoutubeDL(ydl_opts).download(url)
 
