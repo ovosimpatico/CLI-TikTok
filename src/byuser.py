@@ -25,20 +25,14 @@ def proxitok_scraper(username: str) -> list[str]:
     session = requests.Session()
     direct_links = []
     next_href = ""
-    rate_limit = 0
     while True:
         url = f"{OPTIONS['proxitok_instance']}/@{username}{next_href}"
         response = session.get(url)
         log(f"Scraping {url}")
         
-        if response.status_code == 429 or response.status_code == 403:
-            # may want to adjust this ratio
-            rate_limit += 1
-            sleep_time = 30 * rate_limit
-            print(f"{response.status_code} {response.reason} sleeping for {sleep_time}")
-            log(f"\n{response.status_code} {response.reason} sleeping for {sleep_time}")
-            time.sleep(sleep_time)
-            continue
+        if OPTIONS["ratelimit"] != 0:
+            log(f'Sleeping for {OPTIONS["ratelimit"]}s')
+            time.sleep(OPTIONS["ratelimit"])
 
         if not response.ok:
             error_msg = f"{response.status_code} {response.reason} getting {url}"

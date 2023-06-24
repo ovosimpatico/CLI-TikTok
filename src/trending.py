@@ -4,7 +4,7 @@ import requests
 from bs4 import BeautifulSoup
 
 from log import logtofile as log
-
+from src.constants import OPTIONS
 
 def streamtrending(amount:int = 24):
     links = proxitok_trending(amount)
@@ -28,7 +28,6 @@ def proxitok_trending(amount: int = 24) -> list[str]:
     session = requests.Session()
     direct_links = []
     next_href = ""
-    rate_limit = 0
     while True:
         # The "next" page url is always the same but loads different trending videos each time
         url = f"{OPTIONS['proxitok_instance']}/trending{next_href}"
@@ -36,14 +35,9 @@ def proxitok_trending(amount: int = 24) -> list[str]:
         response = session.get(url)
         log(f"Scraping {url}")
         
-        if response.status_code == 429 or response.status_code == 403:
-            # may want to adjust this ratio
-            rate_limit += 1
-            sleep_time = 30 * rate_limit
-            print(f"{response.status_code} {response.reason} sleeping for {sleep_time}")
-            log(f"\n{response.status_code} {response.reason} sleeping for {sleep_time}")
-            time.sleep(sleep_time)
-            continue
+        if OPTIONS["ratelimit"] != 0:
+            log(f'Sleeping for {OPTIONS["ratelimit"]}s')
+            time.sleep(OPTIONS["ratelimit"])
 
         if not response.ok:
             error_msg = f"{response.status_code} {response.reason} getting {url}"

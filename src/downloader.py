@@ -1,11 +1,12 @@
 import os
+import time
 
 from yt_dlp import YoutubeDL
 from yt_dlp.utils import DownloadError
 
 from log import logtofile as log
 from src.functions import url_redirection
-
+from src.constants import OPTIONS
 
 def downloader(url):
     ydl_opts = {
@@ -38,6 +39,10 @@ def downloadtiktoks(urls):
             randomvideo = index = index + 1
             url = url_redirection(urls[randomvideo])
 
+            if OPTIONS["ratelimit"] != 0:
+                log(f'Sleeping for {OPTIONS["ratelimit"]}s')
+                time.sleep(OPTIONS["ratelimit"])
+                
             try:
                 downloader(url)
                 log(f"Video {url} was downloaded")
