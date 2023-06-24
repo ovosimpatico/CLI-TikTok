@@ -34,6 +34,4 @@ On Proxitok's Github, the creator stated:
 
 CLI TikTok used to download RSS feeds from Proxitok until May 13, 2023. In this date, we switched to web scraping due to limited functionality that RSS feeds brought. There is no reliable and working alternative for obtaining the data.
 
-CLI TikTok uses the official Proxitok instance for the scraping, https://proxitok.pabloferreiro.es
-
 I heavily recommend users to run their own instance of Proxitok if they plan to do moderate or heavy usage of this software. The instance can be changed at any time on `src/contants.py` file.
