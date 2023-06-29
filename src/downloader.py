@@ -5,14 +5,15 @@ from yt_dlp import YoutubeDL
 from yt_dlp.utils import DownloadError
 
 from log import logtofile as log
-from src.functions import url_redirection
 from src.constants import OPTIONS
+from src.functions import url_redirection
+
 
 def downloader(url):
     ydl_opts = {
         "format": "bestvideo*+bestaudio/best",
         "outtmpl": os.getcwd() + "/video/%(creator)s/%(id)s.%(ext)s",
-        "download_archive": os.getcwd() + "/video/.video_archive"
+        "download_archive": os.getcwd() + "/video/.video_archive",
     }
     YoutubeDL(ydl_opts).download(url)
 
@@ -42,7 +43,7 @@ def downloadtiktoks(urls):
             if OPTIONS["ratelimit"] != 0:
                 log(f'Sleeping for {OPTIONS["ratelimit"]}s')
                 time.sleep(OPTIONS["ratelimit"])
-                
+
             try:
                 downloader(url)
                 log(f"Video {url} was downloaded")

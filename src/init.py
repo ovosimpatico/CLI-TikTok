@@ -12,6 +12,7 @@
 import os
 import platform
 import sys
+
 import requests
 
 from log import logtofile as log
@@ -23,19 +24,25 @@ def clear_screen():
 
 def init(silent):
     clear_screen()
-    
+
     if not silent:
-        
         print("Welcome to CLI TikTok, an open-source TikTok archiver and viewer!")
         input("Press ENTER to proceed")
 
     log("Started dependency test")
     required_libraries = ["requests", "yt_dlp", "distro", "bs4"]
-    missing_libraries = [library for library in required_libraries if not _library_exists(library)]
+    missing_libraries = [
+        library for library in required_libraries if not _library_exists(library)
+    ]
     if missing_libraries:
-        log("Dependency test failed - Missing libraries: " + ", ".join(missing_libraries))
+        log(
+            "Dependency test failed - Missing libraries: "
+            + ", ".join(missing_libraries)
+        )
         clear_screen()
-        input("The program detected dependencies are not installed.\nPress ENTER to install the necessary libraries.\n(You will need to open the program again afterwards)")
+        input(
+            "The program detected dependencies are not installed.\nPress ENTER to install the necessary libraries.\n(You will need to open the program again afterwards)"
+        )
         log("User accepted automatic installation, running it.\n")
         os.system("pip install -r requirements.txt --user")
         clear_screen()
@@ -50,36 +57,56 @@ def init(silent):
 
     log("Started update / networking test")
     try:
-        link = requests.get("https://raw.githubusercontent.com/nanometer5088/CLI-TikTok/main/src/constants.py").text.strip() 
+        link = requests.get(
+            "https://raw.githubusercontent.com/nanometer5088/CLI-TikTok/main/src/constants.py"
+        ).text.strip()
 
         userversion = _read_user_version()
-        
-        version_line = next(line for line in link.split('\n') 
-                    if line.startswith('    "version": '))
-        data = version_line.split(': ')[1]
-        
+
+        version_line = next(
+            line for line in link.split("\n") if line.startswith('    "version": ')
+        )
+        data = version_line.split(": ")[1]
+
         if userversion < data:
-            log(f"New version detected! User version is {userversion}, but {data} was found on Github.")
+            log(
+                f"New version detected! User version is {userversion}, but {data} was found on Github."
+            )
             clear_screen()
-            input("\tThere's a new version available!\n\tUpdates bring performance and feature improvements!\n\tDownload the new version here:\n\thttps://github.com/nanometer5088/CLI-TikTok/archive/refs/heads/main.zip\n\n\tPress ENTER to proceed")
+            input(
+                "\tThere's a new version available!\n\tUpdates bring performance and feature improvements!\n\tDownload the new version here:\n\thttps://github.com/nanometer5088/CLI-TikTok/archive/refs/heads/main.zip\n\n\tPress ENTER to proceed"
+            )
             clear_screen()
         else:
             log("The user has internet access and the software is up-to-date.\n")
             clear_screen()
 
     except requests.exceptions.ConnectionError:
-        log("A connection error was detected when trying to connect to https://raw.githubusercontent.com/ to check for updates.")
+        log(
+            "A connection error was detected when trying to connect to https://raw.githubusercontent.com/ to check for updates."
+        )
         try:
-            for site in ["https://www.eff.org", "https://freedom.press", "https://www.torproject.org", "https://www.privacyguides.org"]:
+            for site in [
+                "https://www.eff.org",
+                "https://freedom.press",
+                "https://www.torproject.org",
+                "https://www.privacyguides.org",
+            ]:
                 requests.get(site)
-            log("The user seems to be connected to the internet, but Github is not accessible. Dazed and confused, but trying to continue.")
+            log(
+                "The user seems to be connected to the internet, but Github is not accessible. Dazed and confused, but trying to continue."
+            )
             clear_screen()
         except requests.exceptions.ConnectionError:
             clear_screen()
             print("CLI-TikTok detected your device isn't connected to the internet.")
-            print("This software requires a reliable and uncensored internet connection to properly work.")
+            print(
+                "This software requires a reliable and uncensored internet connection to properly work."
+            )
             print("Please try again with an internet connection.")
-            log("The software exited, and the user was notified of the connection problem.")
+            log(
+                "The software exited, and the user was notified of the connection problem."
+            )
             sys.exit()
 
 
@@ -99,6 +126,7 @@ def _get_os_info():
         return f"Mac OS {platform.mac_ver()}"
     elif system == "Linux":
         import distro
+
         return f"{distro.name()} {distro.version()} - {os.uname().release}"
     else:
         return f"{system} - {platform.machine()}"
@@ -110,4 +138,5 @@ def _get_python_version():
 
 def _read_user_version():
     from src.constants import APP
+
     return str(APP["version"])

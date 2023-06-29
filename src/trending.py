@@ -6,7 +6,8 @@ from bs4 import BeautifulSoup
 from log import logtofile as log
 from src.constants import OPTIONS
 
-def streamtrending(amount:int = 24):
+
+def streamtrending(amount: int = 24):
     links = proxitok_trending(amount)
 
     if len(links) == 0:
@@ -23,6 +24,7 @@ def streamtrending(amount:int = 24):
 
 def proxitok_trending(amount: int = 24) -> list[str]:
     from src.constants import OPTIONS
+
     log("Scraper started")
     print("\nObtaining URLs - this can take a while when requesting many posts.")
     session = requests.Session()
@@ -34,7 +36,7 @@ def proxitok_trending(amount: int = 24) -> list[str]:
 
         response = session.get(url)
         log(f"Scraping {url}")
-        
+
         if OPTIONS["ratelimit"] != 0:
             log(f'Sleeping for {OPTIONS["ratelimit"]}s')
             time.sleep(OPTIONS["ratelimit"])
@@ -44,11 +46,11 @@ def proxitok_trending(amount: int = 24) -> list[str]:
             log(error_msg)
             print(error_msg)
             return direct_links
-            
+
         soup = BeautifulSoup(response.text, "html.parser")
 
         posts = soup.find_all("article", class_="media")
-        
+
         if not posts:
             error_msg = "No posts found for trending."
             log(error_msg)

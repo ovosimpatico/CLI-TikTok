@@ -6,6 +6,7 @@ from bs4 import BeautifulSoup
 from log import logtofile as log
 from src.streaming import getVideoInfo, mpv
 
+
 def streamuser(username):
     links = proxitok_scraper(username)
 
@@ -20,6 +21,7 @@ def streamuser(username):
 
 def proxitok_scraper(username: str) -> list[str]:
     from src.constants import OPTIONS
+
     log("Scraper started")
     print("\nObtaining URLs - this can take a while with users with many posts.")
     session = requests.Session()
@@ -29,7 +31,7 @@ def proxitok_scraper(username: str) -> list[str]:
         url = f"{OPTIONS['proxitok_instance']}/@{username}{next_href}"
         response = session.get(url)
         log(f"Scraping {url}")
-        
+
         if OPTIONS["ratelimit"] != 0:
             log(f'Sleeping for {OPTIONS["ratelimit"]}s')
             time.sleep(OPTIONS["ratelimit"])
@@ -39,11 +41,11 @@ def proxitok_scraper(username: str) -> list[str]:
             log(error_msg)
             print(error_msg)
             return direct_links
-            
+
         soup = BeautifulSoup(response.text, "html.parser")
 
         posts = soup.find_all("article", class_="media")
-        
+
         if not posts:
             error_msg = "No posts found. The specified account is likely private or has no published videos"
             log(error_msg)

@@ -24,7 +24,7 @@ from src.init import init
 silent = True
 if len(sys.argv) <= 1:
     silent = False
-    
+
 a = init(silent)
 
 if a == -1:
@@ -87,12 +87,11 @@ def main():
                 username = str(input("Enter the tiktok username here: "))
                 log(f"The creator chosen was: @{username}\n")
                 links = proxitok_scraper(username)
-                downloadtiktoks(links) # add handling for when zero links are passed
+                downloadtiktoks(links)  # add handling for when zero links are passed
                 sys.exit()
 
         ## Stream
         if question == 2:
-
             watchquestion = int(
                 input(
                     """Do you want to watch your liked videos, a creator or trending videos?
@@ -107,7 +106,6 @@ def main():
 
             ## Stream liked videos
             if watchquestion == 1:
-
                 randomquestion = int(
                     input(
                         """Do you want to watch the tiktoks in randomized order?
@@ -188,6 +186,7 @@ def main():
 # Warning, this section is experimental and will only run if you use any launch arguments
 # GUI Code:
 
+
 def arguments(args):
     log("Running using launch arguments")
 
@@ -199,7 +198,7 @@ def arguments(args):
         username = args.downloadcreator
         log(f"The creator chosen was: @{username}\n")
         links = proxitok_scraper(username)
-        downloadtiktoks(links) # add handling for when zero links are passed
+        downloadtiktoks(links)  # add handling for when zero links are passed
 
     elif args.streamlikedrandom:
         log("The user chose to stream liked videos in shuffled mode\n")
@@ -223,7 +222,9 @@ def arguments(args):
         log("The user chose to stream trending videos\n")
         videos = int(args.streamtrending)
         if videos >= 1:
-            streamtrending(videos)       
+            streamtrending(videos)
+
+
 if silent:
     arguments(args)
 else:

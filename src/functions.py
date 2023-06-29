@@ -2,19 +2,22 @@ import os
 import random
 
 import requests
+
 from log import logtofile as log
+
 
 def listas():
     # Retrieves tiktok likes and dates from user_data.json
     import json
-    f = open('user_data.json')
+
+    f = open("user_data.json")
     linklist = []
     datelist = []
     data = json.load(f)
 
-    for i in data['Activity']["Like List"]['ItemFavoriteList']:
-        linklist.append(i['Link'])
-        datelist.append(i['Date'])
+    for i in data["Activity"]["Like List"]["ItemFavoriteList"]:
+        linklist.append(i["Link"])
+        datelist.append(i["Date"])
     f.close()
     log("user_data.json file was processed sucessfully")
     return linklist, datelist
