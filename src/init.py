@@ -13,8 +13,6 @@ import os
 import platform
 import sys
 
-import requests
-
 from log import logtofile as log
 
 
@@ -56,6 +54,9 @@ def init(silent):
     log("Operating System and Python detection finished\n")
 
     log("Started update / networking test")
+    
+    import requests
+
     try:
         link = requests.get(
             "https://raw.githubusercontent.com/nanometer5088/CLI-TikTok/main/src/constants.py"
