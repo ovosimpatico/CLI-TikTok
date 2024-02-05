@@ -10,7 +10,7 @@ def listas():
     # Retrieves tiktok likes and dates from user_data.json
     import json
 
-    f = open("user_data.json")
+    f = open("user_data.json", encoding="utf-8")
     linklist = []
     datelist = []
     data = json.load(f)
