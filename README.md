@@ -1,5 +1,5 @@
 <p align="center">
-    <a href="https://github.com/nanometer5088/CLI-TikTok/">
+    <a href="https://github.com/ovosimpatico/CLI-TikTok/">
         <img src="docs/assets/logo.png" alt="Logo" width="160" height="160">
     </a>
 
@@ -20,6 +20,11 @@
 </ol>
 
 
+> ### State of the project
+> 
+> I have been busy with other projects, and I don't plan to add any new features on TikTok-CLI in the future.
+> 
+> I will still accept pull requests and issues, and will try to keep it working, but I am not actively developing it anymore.
 
 ## About the project
 This is a TikTok archiver and viewer. It supports watching or archiving your liked tiktoks or from a specific creator.
@@ -32,7 +37,7 @@ This is a TikTok archiver and viewer. It supports watching or archiving your lik
 
 2) Download the latest version of [MPV](https://mpv.io/installation/), make sure it is added to the PATH.
 
-3) Download the [source code](https://github.com/nanometer5088/CLI-TikTok/archive/refs/heads/main.zip) (recommended) or the latest [release](https://github.com/nanometer5088/CLI-TikTok/releases).
+3) Download the [source code](https://github.com/ovosimpatico/CLI-TikTok/archive/refs/heads/main.zip) (recommended) or the latest [release](https://github.com/ovosimpatico/CLI-TikTok/releases).
 
 4) Extract **all** files to an empty folder.
 
@@ -68,14 +73,14 @@ By using this software, you acknowledge that use of this software is done so at 
 
 
 
-[downloads-shield]: https://img.shields.io/github/downloads/nanometer5088/CLI-TikTok/total?style=for-the-badge&logo=github
-[downloads-url]: https://github.com/nanometer5088/CLI-TikTok/releases/latest
+[downloads-shield]: https://img.shields.io/github/downloads/ovosimpatico/CLI-TikTok/total?style=for-the-badge&logo=github
+[downloads-url]: https://github.com/ovosimpatico/CLI-TikTok/releases/latest
 
-[language-shield]: https://img.shields.io/github/languages/top/nanometer5088/CLI-TikTok?logo=python&logoColor=yellow&style=for-the-badge
+[language-shield]: https://img.shields.io/github/languages/top/ovosimpatico/CLI-TikTok?logo=python&logoColor=yellow&style=for-the-badge
 [language-url]: https://www.python.org/
 
-[license-shield]: https://img.shields.io/github/license/nanometer5088/CLI-TikTok?style=for-the-badge
-[license-url]: https://github.com/nanometer5088/CLI-TikTok/blob/main/LICENSE
+[license-shield]: https://img.shields.io/github/license/ovosimpatico/CLI-TikTok?style=for-the-badge
+[license-url]: https://github.com/ovosimpatico/CLI-TikTok/blob/main/LICENSE
 
 [discord-shield]: https://img.shields.io/discord/1068543728274382868?color=7289da&label=Support&logo=discord&logoColor=7289da&style=for-the-badge
 [discord-url]: https://discord.gg/7qK8sfEq2q
