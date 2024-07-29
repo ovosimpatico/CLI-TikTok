@@ -21,10 +21,18 @@
 
 
 > ### State of the project
-> 
-> I have been busy with other projects, and I don't plan to add any new features on TikTok-CLI in the future.
-> 
-> I will still accept pull requests and issues, and will try to keep it working, but I am not actively developing it anymore.
+>
+> TikTok-CLI is no longer functional due to issues with our main data source, [Proxitok](https://github.com/pablouser1/ProxiTok).
+>
+> The project is currently discontinued and I will no longer be actively maintaining or developing it.
+>
+> However, I'm open to community contributions:
+> - If you'd like to submit pull requests or bug fixes, I'll still review and add them.
+> - If anyone is interested in taking over the project's development, please reach out to me.
+>
+> I appreciate the interest and support from the community. While I recommend users look for alternative solutions, I'm grateful for any efforts to keep this project alive.
+>
+> Thank you to everyone who has used or contributed to TikTok-CLI.
 
 ## About the project
 This is a TikTok archiver and viewer. It supports watching or archiving your liked tiktoks or from a specific creator.
